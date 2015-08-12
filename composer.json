@@ -1,0 +1,13 @@
+{
+  "autoload" : {
+    "psr-4" : {
+      "UACapabilities\\" : "src"
+    }
+  },
+  "scripts" : {
+    "test" : "php ./tests/test.php"
+  },
+  "require": {
+    "symfony/yaml": "^2.7"
+  }
+}
