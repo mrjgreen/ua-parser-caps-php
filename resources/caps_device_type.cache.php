@@ -21,22 +21,29 @@
       array (
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"Mobile Safari"}' => 
           array (
-            'regex' => 'Large.Screen',
+            'regex' => 'Mobile Safari',
             'capabilities' => 
             array (
               'device' => 
               array (
                 'type' => 'smartphone',
               ),
+            ),
+          ),
+          '{"regex":"Large.Screen"}' => 
+          array (
+            'regex' => 'Large.Screen',
+            'capabilities' => 
+            array (
               'user' => 
               array (
                 'view' => 'tv',
               ),
             ),
           ),
-          1 => 
+          '{"regex":"Mobile.Safari"}' => 
           array (
             'regex' => 'Mobile.Safari',
             'capabilities' => 
@@ -47,7 +54,7 @@
               ),
             ),
           ),
-          2 => 
+          '{"regex":"Safari"}' => 
           array (
             'regex' => 'Safari',
             'capabilities' => 
@@ -106,7 +113,7 @@
       array (
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"Mobile"}' => 
           array (
             'regex' => 'Mobile',
             'capabilities' => 
@@ -155,7 +162,7 @@
         ),
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"XBLWP7"}' => 
           array (
             'regex' => 'XBLWP7',
             'capabilities' => 
@@ -483,7 +490,7 @@
         'capabilities' => NULL,
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"AppleTV"}' => 
           array (
             'regex' => 'AppleTV',
             'capabilities' => 
@@ -798,7 +805,7 @@
         ),
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"WPDesktop"}' => 
           array (
             'regex' => 'WPDesktop',
             'capabilities' => 
@@ -822,7 +829,7 @@
         ),
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"WPDesktop"}' => 
           array (
             'regex' => 'WPDesktop',
             'capabilities' => 
@@ -2853,7 +2860,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(Z1[1235]0|E320[^\\/]*|S500|Liquid[^;\\/]*)"}' => 
             array (
               'regex' => '^(Z1[1235]0|E320[^/]*|S500|Liquid[^;/]*)',
               'capabilities' => 
@@ -4745,7 +4752,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^TM"}' => 
             array (
               'regex' => '^TM',
               'capabilities' => 
@@ -4861,7 +4868,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"One Touch (6040X|8000D|8008D)"}' => 
             array (
               'regex' => 'One Touch (6040X|8000D|8008D)',
               'capabilities' => 
@@ -4872,7 +4879,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"One Touch (EVO7|T10|T20)"}' => 
             array (
               'regex' => 'One Touch (EVO7|T10|T20)',
               'capabilities' => 
@@ -7528,7 +7535,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(P|A4ALL)"}' => 
             array (
               'regex' => '^(P|A4ALL)',
               'capabilities' => 
@@ -7580,7 +7587,7 @@
       array (
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"Kindle\\\\\\/.*\\\\(screen "}' => 
           array (
             'regex' => 'Kindle\\/.*\\(screen ',
             'capabilities' => 
@@ -7995,7 +8002,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^[MN]\\\\d{2,}"}' => 
             array (
               'regex' => '^[MN]\\d{2,}',
               'capabilities' => 
@@ -8047,7 +8054,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^S\\\\d{3}"}' => 
             array (
               'regex' => '^S\\d{3}',
               'capabilities' => 
@@ -8173,7 +8180,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^53"}' => 
             array (
               'regex' => '^53',
               'capabilities' => 
@@ -8184,7 +8191,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^([45]\\\\d|A28|A32|A43)"}' => 
             array (
               'regex' => '^([45]\\d|A28|A32|A43)',
               'capabilities' => 
@@ -8263,7 +8270,7 @@
       array (
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"PadFone.*Mobile Safari"}' => 
           array (
             'regex' => 'PadFone.*Mobile Safari',
             'capabilities' => 
@@ -8274,7 +8281,7 @@
               ),
             ),
           ),
-          1 => 
+          '{"regex":"PadFone"}' => 
           array (
             'regex' => 'PadFone',
             'capabilities' => 
@@ -8502,7 +8509,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"picopad"}' => 
             array (
               'regex' => 'picopad',
               'capabilities' => 
@@ -8570,7 +8577,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^HY65"}' => 
             array (
               'regex' => '^HY65',
               'capabilities' => 
@@ -8668,7 +8675,7 @@
                   array (
                     'regexes' => 
                     array (
-                      0 => 
+                      '{"regex":"^[1-5]$"}' => 
                       array (
                         'regex' => '^[1-5]$',
                         'capabilities' => 
@@ -8679,7 +8686,7 @@
                           ),
                         ),
                       ),
-                      1 => 
+                      '[]' => 
                       array (
                         'regex_not' => '^[1-5]$',
                         'capabilities' => 
@@ -8731,7 +8738,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^I8\\\\d"}' => 
             array (
               'regex' => '^I8\\d',
               'capabilities' => 
@@ -8782,7 +8789,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^STUDIO 5\\\\.3"}' => 
             array (
               'regex' => '^STUDIO 5\\.3',
               'capabilities' => 
@@ -8793,7 +8800,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^Touch.Book"}' => 
             array (
               'regex' => '^Touch.Book',
               'capabilities' => 
@@ -8854,7 +8861,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^Aquaris 5\\\\.7"}' => 
             array (
               'regex' => '^Aquaris 5\\.7',
               'capabilities' => 
@@ -8865,7 +8872,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^Aquaris"}' => 
             array (
               'regex' => '^Aquaris',
               'capabilities' => 
@@ -8876,7 +8883,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"^Cervantes"}' => 
             array (
               'regex' => '^Cervantes',
               'capabilities' => 
@@ -9010,7 +9017,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^CT"}' => 
             array (
               'regex' => '^CT',
               'capabilities' => 
@@ -9243,7 +9250,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"CloudPad"}' => 
             array (
               'regex' => 'CloudPad',
               'capabilities' => 
@@ -9401,7 +9408,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"Streak.(7|10|Pro)"}' => 
             array (
               'regex' => 'Streak.(7|10|Pro)',
               'capabilities' => 
@@ -9412,7 +9419,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"(Grappa|V04B)"}' => 
             array (
               'regex' => '(Grappa|V04B)',
               'capabilities' => 
@@ -10646,7 +10653,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^AT"}' => 
             array (
               'regex' => '^AT',
               'capabilities' => 
@@ -10744,7 +10751,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(informer|surfer|squad)"}' => 
             array (
               'regex' => '(informer|surfer|squad)',
               'capabilities' => 
@@ -11019,7 +11026,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^IQ"}' => 
             array (
               'regex' => '^IQ',
               'capabilities' => 
@@ -11260,7 +11267,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(tab|pad)"}' => 
             array (
               'regex' => '(tab|pad)',
               'capabilities' => 
@@ -11271,7 +11278,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"[^A-Za-z]tv[^A-Za-z]"}' => 
             array (
               'regex' => '[^A-Za-z]tv[^A-Za-z]',
               'capabilities' => 
@@ -11952,7 +11959,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(FONE|QUANTUM|INSIGNIA)"}' => 
             array (
               'regex' => '(FONE|QUANTUM|INSIGNIA)',
               'capabilities' => 
@@ -11996,7 +12003,7 @@
       array (
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"Glass"}' => 
           array (
             'regex' => 'Glass',
             'capabilities' => 
@@ -12063,7 +12070,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"Mix X5"}' => 
             array (
               'regex' => 'Mix X5',
               'capabilities' => 
@@ -12419,7 +12426,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"Tab"}' => 
             array (
               'regex' => 'Tab',
               'capabilities' => 
@@ -18532,7 +18539,7 @@
             ),
             'regexes' => 
             array (
-              0 => 
+              '[]' => 
               array (
                 'regex_not' => 'Mobile',
                 'capabilities' => 
@@ -21595,7 +21602,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(MediaPad|SpringBoard)"}' => 
             array (
               'regex' => '(MediaPad|SpringBoard)',
               'capabilities' => 
@@ -24536,7 +24543,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^MB-"}' => 
             array (
               'regex' => '^MB-',
               'capabilities' => 
@@ -24547,7 +24554,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^H"}' => 
             array (
               'regex' => '^H',
               'capabilities' => 
@@ -24558,7 +24565,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"^T"}' => 
             array (
               'regex' => '^T',
               'capabilities' => 
@@ -24737,7 +24744,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"TAB"}' => 
             array (
               'regex' => 'TAB',
               'capabilities' => 
@@ -25139,7 +25146,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(IQ 5\\\\.|IQ 9)"}' => 
             array (
               'regex' => '^(IQ 5\\.|IQ 9)',
               'capabilities' => 
@@ -25150,7 +25157,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^(i-style)"}' => 
             array (
               'regex' => '^(i-style)',
               'capabilities' => 
@@ -25161,7 +25168,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"i-note"}' => 
             array (
               'regex' => 'i-note',
               'capabilities' => 
@@ -25690,7 +25697,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(Aqua|Cloud)"}' => 
             array (
               'regex' => '(Aqua|Cloud)',
               'capabilities' => 
@@ -25701,7 +25708,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"(Connect|Buddy)"}' => 
             array (
               'regex' => '(Connect|Buddy)',
               'capabilities' => 
@@ -26329,7 +26336,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(Tab|LT\\\\d)"}' => 
             array (
               'regex' => '(Tab|LT\\d)',
               'capabilities' => 
@@ -26477,7 +26484,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(IdeaTab|SmartTab|Tablet)"}' => 
             array (
               'regex' => '(IdeaTab|SmartTab|Tablet)',
               'capabilities' => 
@@ -26488,7 +26495,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"3GW10[01]"}' => 
             array (
               'regex' => '3GW10[01]',
               'capabilities' => 
@@ -26585,22 +26592,18 @@
       array (
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"Firefox"}' => 
           array (
-            'regex' => 'NetCast',
+            'regex' => 'Firefox',
             'capabilities' => 
             array (
               'device' => 
               array (
                 'type' => 'smartphone',
               ),
-              'user' => 
-              array (
-                'view' => 'tv',
-              ),
             ),
           ),
-          1 => 
+          '{"regex":"NetCast"}' => 
           array (
             'regex' => 'NetCast',
             'capabilities' => 
@@ -26608,6 +26611,10 @@
               'device' => 
               array (
                 'type' => 'tv',
+              ),
+              'user' => 
+              array (
+                'view' => 'tv',
               ),
             ),
           ),
@@ -27640,7 +27647,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^[ZI]\\\\d"}' => 
             array (
               'regex' => '^[ZI]\\d',
               'capabilities' => 
@@ -27674,7 +27681,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^MS"}' => 
             array (
               'regex' => '^MS',
               'capabilities' => 
@@ -27685,7 +27692,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^MID"}' => 
             array (
               'regex' => '^MID',
               'capabilities' => 
@@ -27736,7 +27743,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^Tab"}' => 
             array (
               'regex' => '^Tab',
               'capabilities' => 
@@ -27770,7 +27777,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(M-PP|PhonePad)"}' => 
             array (
               'regex' => '(M-PP|PhonePad)',
               'capabilities' => 
@@ -27781,7 +27788,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"(M-MP5303G)"}' => 
             array (
               'regex' => '(M-MP5303G)',
               'capabilities' => 
@@ -27792,7 +27799,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"(M-MP|SmartPad)"}' => 
             array (
               'regex' => '(M-MP|SmartPad)',
               'capabilities' => 
@@ -27848,7 +27855,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"Lifetab"}' => 
             array (
               'regex' => 'Lifetab',
               'capabilities' => 
@@ -27927,7 +27934,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(A111|A240)"}' => 
             array (
               'regex' => '^(A111|A240)',
               'capabilities' => 
@@ -27938,7 +27945,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^A"}' => 
             array (
               'regex' => '^A',
               'capabilities' => 
@@ -27949,7 +27956,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"^P"}' => 
             array (
               'regex' => '^P',
               'capabilities' => 
@@ -27993,7 +28000,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^t\\\\d+"}' => 
             array (
               'regex' => '^t\\d+',
               'capabilities' => 
@@ -28155,7 +28162,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(Cynus F5|Cynus T[257])"}' => 
             array (
               'regex' => '(Cynus F5|Cynus T[257])',
               'capabilities' => 
@@ -28294,7 +28301,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(MZ|Xoom)"}' => 
             array (
               'regex' => '^(MZ|Xoom)',
               'capabilities' => 
@@ -28342,7 +28349,7 @@
         ),
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"\\\\bMIDP\\\\b"}' => 
           array (
             'regex' => '\\bMIDP\\b',
             'capabilities' => 
@@ -28409,7 +28416,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"MyPad"}' => 
             array (
               'regex' => 'MyPad',
               'capabilities' => 
@@ -28655,7 +28662,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"DS"}' => 
             array (
               'regex' => 'DS',
               'capabilities' => 
@@ -28666,7 +28673,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"Wii"}' => 
             array (
               'regex' => 'Wii',
               'capabilities' => 
@@ -37083,7 +37090,7 @@
         ),
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"XBLWP7"}' => 
           array (
             'regex' => 'XBLWP7',
             'capabilities' => 
@@ -37094,7 +37101,7 @@
               ),
             ),
           ),
-          1 => 
+          '{"regex":"WPDesktop"}' => 
           array (
             'regex' => 'WPDesktop',
             'capabilities' => 
@@ -38493,7 +38500,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"Find ?5"}' => 
             array (
               'regex' => 'Find ?5',
               'capabilities' => 
@@ -38641,7 +38648,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(FZ-A1|JT-B1)"}' => 
             array (
               'regex' => '(FZ-A1|JT-B1)',
               'capabilities' => 
@@ -38652,7 +38659,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"VIERA"}' => 
             array (
               'regex' => 'VIERA',
               'capabilities' => 
@@ -38734,7 +38741,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(FZ-A1|JT-B1)"}' => 
             array (
               'regex' => '(FZ-A1|JT-B1)',
               'capabilities' => 
@@ -38745,7 +38752,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"VIERA"}' => 
             array (
               'regex' => 'VIERA',
               'capabilities' => 
@@ -38813,7 +38820,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"(i800)"}' => 
             array (
               'regex' => '(i800)',
               'capabilities' => 
@@ -38995,7 +39002,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(MOB-5045)"}' => 
             array (
               'regex' => '^(MOB-5045)',
               'capabilities' => 
@@ -39006,7 +39013,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^MOB"}' => 
             array (
               'regex' => '^MOB',
               'capabilities' => 
@@ -39053,7 +39060,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^PAP5\\\\d{3}"}' => 
             array (
               'regex' => '^PAP5\\d{3}',
               'capabilities' => 
@@ -39064,7 +39071,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^PAP"}' => 
             array (
               'regex' => '^PAP',
               'capabilities' => 
@@ -39075,7 +39082,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"^PMP"}' => 
             array (
               'regex' => '^PMP',
               'capabilities' => 
@@ -39126,7 +39133,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"A11Note"}' => 
             array (
               'regex' => 'A11Note',
               'capabilities' => 
@@ -39240,7 +39247,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^(Galaxy Note II|GT-I9082|GT-I9205|GT-N[79]|SM-N|SCH-R9)"}' => 
             array (
               'regex' => '^(Galaxy Note II|GT-I9082|GT-I9205|GT-N[79]|SM-N|SCH-R9)',
               'capabilities' => 
@@ -39251,7 +39258,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)"}' => 
             array (
               'regex' => '^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)',
               'capabilities' => 
@@ -39262,7 +39269,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"^(YP\\\\-G)"}' => 
             array (
               'regex' => '^(YP\\-G)',
               'capabilities' => 
@@ -39273,7 +39280,7 @@
                 ),
               ),
             ),
-            3 => 
+            '{"regex":"^(EK-GC100)"}' => 
             array (
               'regex' => '^(EK-GC100)',
               'capabilities' => 
@@ -64666,7 +64673,7 @@
         ),
         'regexes' => 
         array (
-          0 => 
+          '{"regex":"\\\\bMIDP\\\\b"}' => 
           array (
             'regex' => '\\bMIDP\\b',
             'capabilities' => 
@@ -64800,7 +64807,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^SPX"}' => 
             array (
               'regex' => '^SPX',
               'capabilities' => 
@@ -64975,7 +64982,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"Tablet"}' => 
             array (
               'regex' => 'Tablet',
               'capabilities' => 
@@ -64986,7 +64993,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^KDL"}' => 
             array (
               'regex' => '^KDL',
               'capabilities' => 
@@ -64997,7 +65004,7 @@
                 ),
               ),
             ),
-            2 => 
+            '{"regex":"PalmOS"}' => 
             array (
               'regex' => 'PalmOS',
               'capabilities' => 
@@ -69104,7 +69111,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^Mi(?:7|1\\\\d)\\\\d{2}"}' => 
             array (
               'regex' => '^Mi(?:7|1\\d)\\d{2}',
               'capabilities' => 
@@ -69115,7 +69122,7 @@
                 ),
               ),
             ),
-            1 => 
+            '{"regex":"^Mi53\\\\d"}' => 
             array (
               'regex' => '^Mi53\\d',
               'capabilities' => 
@@ -70168,7 +70175,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^TM-SM"}' => 
             array (
               'regex' => '^TM-SM',
               'capabilities' => 
@@ -70222,7 +70229,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"tune|x1|pocket"}' => 
             array (
               'regex' => 'tune|x1|pocket',
               'capabilities' => 
@@ -70432,7 +70439,7 @@
         array (
           'regexes' => 
           array (
-            0 => 
+            '{"regex":"^VT\\\\d"}' => 
             array (
               'regex' => '^VT\\d',
               'capabilities' => 
@@ -76489,7 +76496,7 @@
       ),
       'regexes' => 
       array (
-        0 => 
+        '{"regex":"NetCast"}' => 
         array (
           'regex' => 'NetCast',
           'capabilities' => 

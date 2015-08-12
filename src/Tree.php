@@ -23,31 +23,50 @@ class Tree {
 
     private function transform(array $data)
     {
-        $array = new \RecursiveArrayIterator($data);
-        $iterator = new \RecursiveIteratorIterator($array, \RecursiveIteratorIterator::SELF_FIRST);
+        foreach($this->findNestedByKey($data, 'regexes') as $keys)
+        {
+            $ref = &$data;
 
-        $new = array();
+            foreach($keys as $key) {
+                $ref = &$ref[$key];
+            }
+
+            $newItem = array();
+
+            foreach($ref as $regex)
+            {
+                $newItem[json_encode(array_intersect_key($regex, ['regex' => 1, 'not_regex' => 1]))] = $regex;
+            }
+
+            $ref = $newItem;
+        }
+
+        return $data;
+    }
+
+    private function findNestedByKey(array $items, $search)
+    {
+        $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($items), \RecursiveIteratorIterator::SELF_FIRST);
+
+        $foundKeys = array();
 
         foreach($iterator as $key => $item)
         {
-            if($key === 'regexes')
+            if($key === $search)
             {
-                $newItem = array();
+                $keys = array();
 
-                foreach($item as $regex)
-                {
-                    $newItem[json_encode(array_intersect_key($regex, ['regex' => 1, 'not_regex' => 1]))] = $regex;
+                for ($i = 0; $i < $iterator->getDepth(); $i++) {
+                    $keys[] = $iterator->getSubIterator($i)->key();
                 }
 
-                $item = $newItem;
-            }
+                $keys[] = $key;
 
-            $new[$key] = $item;
+                $foundKeys[] = $keys;
+            }
         }
 
-        die();
-
-        return $iterator->getArrayCopy();
+        return $foundKeys;
     }
 
     public function get()
