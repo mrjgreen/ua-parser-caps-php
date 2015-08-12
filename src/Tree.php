@@ -16,12 +16,14 @@ class Tree {
 
     public function load($file)
     {
-        $data = $this->transform($this->yamlParser->parse($file));
+        $data = $this->yamlParser->parse($file);
+
+        $data = $this->transformRegexes($data);
 
         $this->data = array_replace_recursive($this->data, $data);
     }
 
-    private function transform(array $data)
+    private function transformRegexes(array $data)
     {
         foreach($this->findNestedByKey($data, 'regexes') as $keys)
         {
