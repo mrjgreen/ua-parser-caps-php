@@ -7,12 +7,18 @@ define('CAPS_FILE_BASE', __DIR__ . '/../resources/caps_device_type.yaml');
 define('CAPS_USER_VIEW_FILE', __DIR__ . '/../resources/caps_user_view.yaml');
 define('CAPS_CACHE_FILE', __DIR__ . '/../resources/caps_device_type.cache.php');
 
-if(true || !is_file(CAPS_CACHE_FILE))
+$loadFiles = array(CAPS_FILE_BASE, CAPS_USER_VIEW_FILE);
+
+if(!is_file(CAPS_CACHE_FILE) || filemtime(CAPS_CACHE_FILE) < max(array_map('filemtime', $loadFiles)))
 {
+    echo "Building data file\n";
+
     $tree = new \UACapabilities\Tree();
 
-    $tree->load(file_get_contents(CAPS_FILE_BASE));
-    $tree->load(file_get_contents(CAPS_USER_VIEW_FILE));
+    foreach($loadFiles as $file)
+    {
+        $tree->load($file);
+    }
 
     $data = $tree->get();
 

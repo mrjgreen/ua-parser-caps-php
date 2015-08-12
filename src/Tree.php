@@ -20,7 +20,18 @@ class Tree {
 
         $data = $this->transformRegexes($data);
 
+        $data = $this->changeKeyCaseRecursive($data);
+
         $this->data = array_replace_recursive($this->data, $data);
+    }
+
+    private function changeKeyCaseRecursive(array $arr)
+    {
+        return array_map(function($item){
+            if(is_array($item))
+                $item = $this->changeKeyCaseRecursive($item);
+            return $item;
+        }, array_change_key_case($arr, CASE_LOWER));
     }
 
     private function transformRegexes(array $data)
@@ -37,7 +48,7 @@ class Tree {
 
             foreach($ref as $regex)
             {
-                $newItem[json_encode(array_intersect_key($regex, ['regex' => 1, 'not_regex' => 1]))] = $regex;
+                $newItem[json_encode(array_intersect_key($regex, ['regex' => 1, 'regex_not' => 1]))] = $regex;
             }
 
             $ref = $newItem;

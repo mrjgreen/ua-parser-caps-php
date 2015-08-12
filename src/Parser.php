@@ -1,10 +1,41 @@
 <?php namespace UACapabilities;
 
+class Result {
+
+    public $capabilities = array();
+
+    public function addCapabilities(array $capabilities)
+    {
+        $this->capabilities = array_replace_recursive($this->capabilities, $capabilities);
+    }
+
+    public function addOverwrites(array $overwrites)
+    {
+        $this->capabilities = array_replace_recursive($this->capabilities, $overwrites);
+    }
+
+    public function merge(Result $result)
+    {
+        $this->addCapabilities($result->capabilities);
+    }
+}
+
 class Parser {
+
+    const MAX_RECURSION = 5;
+
+    public $path;
 
     private $tree;
 
-    public $path;
+    private $recursionDepth = 0;
+
+    private static $types = [
+        ['ua', ['family', 'major', 'minor']],
+        ['os', ['family', 'major', 'minor']],
+        ['device', ['family']],
+        ['device', ['brand', 'model']],
+    ];
 
     public function __construct(array $tree)
     {
@@ -13,25 +44,32 @@ class Parser {
 
     public function parse(InputData $input)
     {
-        $inputs = array(
-            'ua' => $input->userAgent,
-            'os' => $input->os,
-            'device' => $input->device,
-        );
-
-
-        $caps = isset($this->tree['default']) ? $this->tree['default']['capabilities'] : array();
-
-        $types = [
-            ['ua', ['family', 'major', 'minor']],
-            ['os', ['family', 'major', 'minor']],
-            ['device', ['family']],
-            ['device', ['brand', 'model']],
-        ];
+        $this->recursionDepth = 0;
 
         $this->path = array();
 
-        foreach($types as $typesModes)
+        $result = $this->parseInternal($input);
+
+        return $result->capabilities;
+    }
+
+    private function parseInternal(InputData $input)
+    {
+        $result = new Result();
+
+        if(++$this->recursionDepth >= self::MAX_RECURSION){
+            return $result;
+        }
+
+        $inputs = [
+            'ua' => $input->userAgent,
+            'os' => $input->os,
+            'device' => $input->device,
+        ];
+
+        isset($this->tree['default']) and $result->addCapabilities($this->tree['default']['capabilities']);
+
+        foreach(static::$types as $typesModes)
         {
             list($type, $modes) = $typesModes;
 
@@ -50,70 +88,73 @@ class Parser {
                     break;
                 }
 
+                $uaData = strtolower($item[$mode]);
+
                 $this->path[] = "Checking $type > $mode";
 
                 $tree = $tree[$mode];
 
-                $caps = $this->checkAll($caps, $tree, $input);
+                $result->merge($this->checkAll($tree, $input, $uaData . $input->uaString));
 
-                if(!isset($tree[$item[$mode]])) {
+                if(!isset($tree[$uaData])) {
                     break;
                 }
 
-                $this->path[] = "Checking $type > $mode > {$item[$mode]}";
+                $this->path[] = "Checking $type > $mode > {$uaData}";
 
-                $tree = $tree[$item[$mode]];
+                $tree = $tree[$uaData];
 
-                $caps = $this->checkAll($caps, $tree, $input);
+                $result->merge($this->checkAll($tree, $input, $uaData . $input->uaString));
             }
         }
 
-        return $caps;
+        return $result;
     }
 
     /**
-     * @param array $caps
      * @param array $tree
      * @param InputData $input
-     * @return array
+     * @param $regexItem
+     * @return Result
      */
-    private function checkAll(array $caps, array $tree, InputData $input)
+    private function checkAll(array $tree, InputData $input, $regexItem)
     {
-        return array_replace_recursive(
-            $caps,
-            $this->checkCapabilities($tree),
-            $this->checkRegexes($tree, $input),
-            $this->checkExtends($tree, $input),
-            $this->checkOverwrites($tree, $input)
-        );
+        $result = new Result();
+
+        $result->merge($this->checkCapabilities($tree, $input));
+        $result->merge($this->checkRegexes($tree, $regexItem));
+        $result->merge($this->checkOverwrites($tree, $input));
+        $result->merge($this->checkExtends($tree, $input));
+
+        return $result;
     }
 
     /**
      * @param array $tree
-     * @return array
+     * @return Result
      */
     private function checkCapabilities(array $tree)
     {
-        $caps = array();
+        $result = new Result();
 
         if(isset($tree['capabilities']))
         {
             $this->path[] = "Found capabilities " . json_encode($tree['capabilities']);
 
-            $caps = array_replace_recursive($caps, $tree['capabilities']);
+            $result->addCapabilities($tree['capabilities']);
         }
 
-        return $caps;
+        return $result;
     }
 
     /**
      * @param array $tree
      * @param InputData $input
-     * @return array
+     * @return Result
      */
     private function checkOverwrites(array $tree, InputData $input)
     {
-        $caps = array();
+        $result = new Result();
 
         if(isset($tree['overwrites']))
         {
@@ -123,21 +164,21 @@ class Parser {
             {
                 $overwriter = new static($overwrite);
 
-                $caps = array_replace_recursive($caps, $overwriter->parse($input));
+                $result->addOverwrites($overwriter->parse($input));
             }
         }
 
-        return $caps;
+        return $result;
     }
 
     /**
      * @param array $tree
      * @param InputData $input
-     * @return array
+     * @return Result
      */
     private function checkExtends(array $tree, InputData $input)
     {
-        $caps = array();
+        $result = new Result();
 
         if(isset($tree['extends']))
         {
@@ -152,22 +193,21 @@ class Parser {
                 isset($extend['os']) and $extendInput->os = $extend['os'];
                 isset($extend['ua']) and $extendInput->userAgent = $extend['ua'];
 
-
-                $caps = array_replace_recursive($caps, $this->parse($extendInput));
+                $result->merge($this->parseInternal($extendInput));
             }
         }
 
-        return $caps;
+        return $result;
     }
 
     /**
      * @param array $tree
-     * @param InputData $input
-     * @return array
+     * @param $searchString
+     * @return Result
      */
-    private function checkRegexes(array $tree, InputData $input)
+    private function checkRegexes(array $tree, $searchString)
     {
-        $caps = array();
+        $result = new Result();
 
         if(isset($tree['regexes']))
         {
@@ -176,18 +216,18 @@ class Parser {
             foreach($tree['regexes'] as $regex)
             {
                 if(
-                    (isset($regex['regex']) && preg_match("/{$regex['regex']}/", $input->uaString))
+                    (isset($regex['regex']) && preg_match("@{$regex['regex']}@i", $searchString))
                     ||
-                    (isset($regex['regex_not']) && !preg_match("/{$regex['regex_not']}/", $input->uaString))
+                    (isset($regex['regex_not']) && !preg_match("@{$regex['regex_not']}@i", $searchString))
                 ){
                     $this->path[] = "Matched regex " . json_encode($regex);
 
-                    $caps = array_replace_recursive($caps, $regex['capabilities']);
+                    $result->addCapabilities($regex['capabilities']);
                     break;
                 }
             }
         }
 
-        return $caps;
+        return $result;
     }
 }
