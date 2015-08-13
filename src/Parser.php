@@ -108,7 +108,7 @@ class Parser {
 
                 $result->merge($this->checkAll($tree, $input, [$uaData, $input->uaString]));
 
-                if(!isset($tree[$uaData])) {
+                if(!isset($tree[$uaData]) && !isset($tree[$uaData = $this->normalizeName($uaData)])) {
                     break;
                 }
 
@@ -123,6 +123,11 @@ class Parser {
         return $result;
     }
 
+    private function normalizeName($name)
+    {
+        return str_replace('_', " ", $name);
+    }
+
     /**
      * @param array $tree
      * @param InputData $input
@@ -135,8 +140,8 @@ class Parser {
 
         $result->merge($this->checkCapabilities($tree));
         $result->merge($this->checkRegexes($tree, $regexItems));
-        $result->merge($this->checkOverwrites($tree, $input));
         $result->merge($this->checkExtends($tree, $input));
+        $result->merge($this->checkOverwrites($tree, $input));
 
         return $result;
     }

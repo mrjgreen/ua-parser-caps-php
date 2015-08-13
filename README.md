@@ -24,3 +24,12 @@ Roadmap
 * [ ] Refactor into "YAML Translator" and "Parser"
 * [ ] Symfony console commands
 * [ ] Test interface with ua-parser PHP
+
+
+
+#Bramnd => Brand
+#Remove `extends` for `One Touch 6040X`
+#Remove `extends` for `GT-P5210`
+
+#Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
+#Change regex `^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)` to `^(Galaxy Tab|GT-P8|GT-N[58]|SM-[PT]|SHW-M)`
