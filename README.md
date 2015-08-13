@@ -27,9 +27,9 @@ Roadmap
 
 
 
-#Bramnd => Brand
-#Remove `extends` for `One Touch 6040X`
-#Remove `extends` for `GT-P5210`
-
-#Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
-#Change regex `^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)` to `^(Galaxy Tab|GT-P8|GT-N[58]|SM-[PT]|SHW-M)`
+###Current Changes required to get to 5 passing tests
+~~~
+Change "Bramnd => Brand" for Nokia devices - PR outstanding
+Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
+Change regex `^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)` to `^(Galaxy Tab|GT-P8|GT-N[58]|SM-[PT]|SHW-M)`
+~~
