@@ -31,8 +31,8 @@ class Parser {
     private $recursionDepth = 0;
 
     private static $types = [
-        ['ua', ['family', 'major', 'minor']],
         ['os', ['family', 'major', 'minor']],
+        ['ua', ['family', 'major', 'minor']],
         ['device', ['family']],
         ['device', ['brand', 'model']],
     ];
@@ -44,11 +44,15 @@ class Parser {
 
     public function parse(InputData $input)
     {
+        $result = new Result();
+
+        isset($this->tree['default']) and $result->addCapabilities($this->tree['default']['capabilities']);
+
         $this->recursionDepth = 0;
 
         $this->path = array();
 
-        $result = $this->parseInternal($input);
+        $result->merge($this->parseInternal($input));
 
         return $result->capabilities;
     }
@@ -66,8 +70,6 @@ class Parser {
             'os' => $input->os,
             'device' => $input->device,
         ];
-
-        isset($this->tree['default']) and $result->addCapabilities($this->tree['default']['capabilities']);
 
         foreach(static::$types as $typesModes)
         {
