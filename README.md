@@ -7,8 +7,20 @@ You can then use the output from the ua-parser-php parser to find device capabil
 
 Clone the repo
 
-run `composer caps-update` to fetch the source YAML files
+~~~
+composer install
 
-run `composer caps-generate` to regenerate the PHP data file from the YAML files
+composer caps-update #Fetch the source YAML files
 
-run `composer caps-test` to run the tests
+composer caps-generate #Generate the PHP data file from the YAML files
+
+composer caps-test #Run the tests
+~~~
+
+Roadmap
+
+* [x] Automatic update command
+* [ ] All tests passing (15/~62000 failing)
+* [ ] Refactor into "YAML Translator" and "Parser"
+* [ ] Symfony console commands
+* [ ] Test interface with ua-parser PHP
