@@ -133,7 +133,7 @@ class TestCommand extends Command
 
         $passed = $i - $failCount;
 
-        $this->output->write(implode("\n\n", $failed));
+        foreach($failed as $msg) $this->output->writeln($msg);
 
         $this->output->writeln("<info>✔ Passed: $passed / $i</info>");
         $this->output->writeln("<error>✘ Failed: $failCount / $i</error>");

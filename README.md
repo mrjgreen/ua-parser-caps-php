@@ -27,6 +27,7 @@ Roadmap
 
 ###Current Changes required to get to 5 failing tests
 ~~~
-Change "Bramnd => Brand" for Nokia devices - PR outstanding
-Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
+Change "Bramnd => Brand" for Nokia devices - PR outstanding -
 Change regex `^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)` to `^(Galaxy Tab|GT-P8|GT-N[58]|SM-[PT]|SHW-M)`
+Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
+~~~
