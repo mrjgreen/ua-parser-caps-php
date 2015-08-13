@@ -20,14 +20,14 @@ composer caps-test #Run the tests
 Roadmap
 
 * [x] Automatic update command
-* [ ] All tests passing (15/~62000 failing)
+* [ ] All tests passing (5/~62000 failing)
+* [ ] Test interface with ua-parser PHP
 * [ ] Refactor into "YAML Translator" and "Parser"
 * [ ] Symfony console commands
-* [ ] Test interface with ua-parser PHP
 
 
 
-###Current Changes required to get to 5 passing tests
+###Current Changes required to get to 5 failing tests
 ~~~
 Change "Bramnd => Brand" for Nokia devices - PR outstanding
 Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
