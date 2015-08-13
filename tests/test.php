@@ -3,29 +3,14 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 define('TEST_FILE', __DIR__ . '/../resources/test_capabilities.json');
-define('CAPS_FILE_BASE', __DIR__ . '/../resources/caps_device_type.yaml');
-define('CAPS_USER_VIEW_FILE', __DIR__ . '/../resources/caps_user_view.yaml');
-define('CAPS_CACHE_FILE', __DIR__ . '/../resources/caps_device_type.cache.php');
+define('CAPS_CACHE_FILE', __DIR__ . '/../resources/capabilities_tree.php');
 
-$loadFiles = array(CAPS_FILE_BASE, CAPS_USER_VIEW_FILE);
-
-if(!is_file(CAPS_CACHE_FILE) || filemtime(CAPS_CACHE_FILE) < max(array_map('filemtime', $loadFiles)))
+if(!is_file(CAPS_CACHE_FILE))
 {
-    echo "Building data file\n";
-
-    $tree = new \UACapabilities\Tree();
-
-    foreach($loadFiles as $file)
-    {
-        $tree->load($file);
-    }
-
-    $data = $tree->get();
-
-    file_put_contents(CAPS_CACHE_FILE, '<?php return ' . var_export($data, 1) . ';');
-}else{
-    $data = require CAPS_CACHE_FILE;
+    throw new \Exception("Capabilities file " . CAPS_CACHE_FILE . " does not exist. Run 'composer caps-generate'");
 }
+
+$data = require CAPS_CACHE_FILE;
 
 $parser = new UACapabilities\Parser($data);
 

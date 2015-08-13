@@ -5,7 +5,9 @@
     }
   },
   "scripts" : {
-    "test" : "php ./tests/test.php"
+    "caps-test" : "php ./tests/test.php",
+    "caps-update" : "php ./bin/download.php",
+    "caps-generate" : "php ./bin/generate.php"
   },
   "require": {
     "symfony/yaml": "^2.7"
