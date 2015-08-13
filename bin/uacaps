@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php namespace UACapabilities\Command;
+
+use Symfony\Component\Console\Application;
+
+$packageAutoloaders = array(
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../autoload.php',
+);
+
+foreach($packageAutoloaders as $autoloader)
+{
+    if(is_file($autoloader))
+    {
+        include $autoloader;
+    }
+}
+
+$application = new Application('ua-parser');
+$application->add(new UpdateCommand());
+$application->add(new TestCommand());
+$application->run();
