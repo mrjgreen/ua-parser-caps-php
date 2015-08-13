@@ -201,7 +201,6 @@ class Parser {
             foreach($tree['extends'] as $extend)
             {
                 $extendInput = new InputData();
-
                 $extendInput->uaString = $input->uaString;
                 isset($extend['device']) and $extendInput->device = $extend['device'];
                 isset($extend['os']) and $extendInput->os = $extend['os'];

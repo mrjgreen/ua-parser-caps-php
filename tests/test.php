@@ -47,12 +47,7 @@ while($line = fgets($jsonFile))
 
     if(!$test) continue;
 
-    $input = new \UACapabilities\InputData();
-
-    $input->uaString = $test["string"];
-    $input->device = $test["device"];
-    $input->os = $test["os"];
-    $input->userAgent = $test["ua"];
+    $input = new \UACapabilities\InputData($test["string"], $test["ua"], $test["os"], $test["device"]);
 
     $capabilities = $parser->parse($input);
 
