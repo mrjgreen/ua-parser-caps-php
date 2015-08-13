@@ -20,14 +20,13 @@ Roadmap
 * [x] Automatic update command
 * [x] Symfony console commands
 * [x] Refactor into "YAML Translator" and "Parser"
-* [ ] All tests passing (15/~62000 failing)
+* [ ] All tests passing (14/~62000 failing)
 * [ ] Test interface with ua-parser PHP
 
 
 
-###Current Changes required to get to 5 passing tests
+###Current Changes required to get to 5 failing tests
 ~~~
 Change "Bramnd => Brand" for Nokia devices - PR outstanding
 Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
 Change regex `^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)` to `^(Galaxy Tab|GT-P8|GT-N[58]|SM-[PT]|SHW-M)`
-~~~
