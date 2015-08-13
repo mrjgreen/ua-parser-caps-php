@@ -1,15 +1,37 @@
 {
-  "autoload" : {
-    "psr-4" : {
-      "UACapabilities\\" : "src"
+  "name": "mrjgreen/ua-parser-caps-php",
+  "type": "library",
+  "description": "Load device capabilities from UA-Parser output",
+  "keywords": [
+    "user agent",
+    "ua-parser",
+    "ua-capabilities"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Joe Green",
+      "email": "joe.green0991@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/yaml": "^2.7",
+    "symfony/console": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "UACapabilities\\": "src"
     }
   },
-  "scripts" : {
-    "caps-test" : "php ./tests/test.php",
-    "caps-update" : "php ./bin/download.php",
-    "caps-generate" : "php ./bin/generate.php"
+  "bin": [
+    "bin/uacaps"
+  ],
+  "scripts": {
+    "post-dumpautoload-cmd": [
+      "bin/uacaps update"
+    ]
   },
-  "require": {
-    "symfony/yaml": "^2.7"
+  "require-dev": {
+    "phpunit/phpunit": "~4.4"
   }
 }

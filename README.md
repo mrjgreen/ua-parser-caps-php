@@ -10,19 +10,17 @@ Clone the repo
 ~~~
 composer install
 
-composer caps-update #Fetch the source YAML files
+bin/uacaps update #Fetch the source YAML files and generate local PHP tree cache file
 
-composer caps-generate #Generate the PHP data file from the YAML files
-
-composer caps-test #Run the tests
+bin/uacaps test #Run the tests
 ~~~
 
 Roadmap
 
 * [x] Automatic update command
+* [x] Symfony console commands
+* [x] Refactor into "YAML Translator" and "Parser"
 * [ ] All tests passing (15/~62000 failing)
-* [ ] Refactor into "YAML Translator" and "Parser"
-* [ ] Symfony console commands
 * [ ] Test interface with ua-parser PHP
 
 
@@ -32,4 +30,4 @@ Roadmap
 Change "Bramnd => Brand" for Nokia devices - PR outstanding
 Change regex `One Touch (6040X|8000D|8008D)` to `One Touch (8000D|8008D)`
 Change regex `^(Galaxy Tab|GT-P|GT-N[58]|SM-[PT]|SHW-M)` to `^(Galaxy Tab|GT-P8|GT-N[58]|SM-[PT]|SHW-M)`
-~~
+~~~

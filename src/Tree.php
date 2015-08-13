@@ -48,7 +48,7 @@ class Tree {
 
             foreach($ref as $regex)
             {
-                $newItem[json_encode(array_intersect_key($regex, ['regex' => 1, 'regex_not' => 1]))] = $regex;
+                $newItem[json_encode(array_intersect_key($regex, ['regex' => 1, 'regex_not' => 1]))] = "@$regex@i";
             }
 
             $ref = $newItem;
