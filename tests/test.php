@@ -36,11 +36,16 @@ fgets($jsonFile); // Throw away line 1
 
 $total = intval(shell_exec('wc -l ' . TEST_FILE));
 
+$stopOnFail = false;
+
 $i = 0;
+$failed = array();
 
 while($line = fgets($jsonFile))
 {
     $test = json_decode(rtrim(rtrim($line), ','), true);
+
+    if(!$test) continue;
 
     $input = new \UACapabilities\InputData();
 
@@ -56,25 +61,37 @@ while($line = fgets($jsonFile))
     $i++;
 
     if (!compare($test['capabilities'], $capabilities)) {
-        echo "\e[41m\e[97m✘ $i / $total {$test["string"]}\e[49m\e[39m";
-        echo "\n===================================\n";
-        echo "Test Data:\n";
-        echo format(array_diff_key($test, ['capabilities' => 1]));
-        echo "\n===================================\n";
-        echo "Expected:\n";
-        echo format($test['capabilities']);
-        echo "\n===================================\n";
-        echo "Actual:\n";
-        echo format($capabilities);
-        echo "\n===================================\n";
-        echo "Path:\n";
-        echo format($parser->path);
-        echo "\n===================================\n";
-        die();
+        $msg = "";
+        $msg .= "\e[41m\e[97m✘ $i / $total {$test["string"]}\e[49m\e[39m";
+        $msg .= "\n===================================\n";
+        $msg .= "Test Data:\n";
+        $msg .= format(array_diff_key($test, ['capabilities' => 1]));
+        $msg .= "\n===================================\n";
+        $msg .= "Expected:\n";
+        $msg .= format($test['capabilities']);
+        $msg .= "\n===================================\n";
+        $msg .= "Actual:\n";
+        $msg .= format($capabilities);
+        $msg .= "\n===================================\n";
+        $msg .= "Path:\n";
+        $msg .= format($parser->path);
+        $msg .= "\n===================================\n";
+        echo $msg;
+        if($stopOnFail) die();
+        else $failed[] = $msg;
     }else{
         echo "\e[32m✔ $i / $total {$test["string"]}\e[39m\n";
     }
 }
+
+$failCount = count($failed);
+
+$passed = $i - $failCount;
+
+echo implode("\n\n", $failed);
+
+echo "\n\e[32m✔ Passed: $passed / $i\e[39m\n";
+echo "\e[41m\e[97m✘ Failed: $failCount / $i\e[49m\e[39m\n\n";
 
 function compare(array $expected, array $actual)
 {

@@ -22,7 +22,7 @@ class Result {
 
 class Parser {
 
-    const MAX_RECURSION = 5;
+    const MAX_RECURSION = 10;
 
     public $path;
 
@@ -73,8 +73,13 @@ class Parser {
         {
             list($type, $modes) = $typesModes;
 
-            if(!$inputs[$type] || !isset($this->tree[$type]))
-            {
+            if (!$inputs[$type]) {
+                $this->path[] = "Skipping $type - no '$type' item in ua data";
+                continue;
+            }
+
+            if(!isset($this->tree[$type])) {
+                $this->path[] = "Skipping $type - no '$type' item in tree data";
                 continue;
             }
 
@@ -84,7 +89,14 @@ class Parser {
 
             foreach($modes as $mode) {
 
-                if (!isset($item[$mode]) || !isset($tree[$mode])) {
+
+                if (!isset($item[$mode])) {
+                    $this->path[] = "Skipping $type > $mode - no '$mode' item in ua data";
+                    break;
+                }
+
+                if(!isset($tree[$mode])) {
+                    $this->path[] = "Skipping $type > $mode - no '$mode' item in tree data";
                     break;
                 }
 
@@ -94,7 +106,7 @@ class Parser {
 
                 $tree = $tree[$mode];
 
-                $result->merge($this->checkAll($tree, $input, $uaData . $input->uaString));
+                $result->merge($this->checkAll($tree, $input, [$uaData, $input->uaString]));
 
                 if(!isset($tree[$uaData])) {
                     break;
@@ -104,7 +116,7 @@ class Parser {
 
                 $tree = $tree[$uaData];
 
-                $result->merge($this->checkAll($tree, $input, $uaData . $input->uaString));
+                $result->merge($this->checkAll($tree, $input, [$uaData, $input->uaString]));
             }
         }
 
@@ -114,15 +126,15 @@ class Parser {
     /**
      * @param array $tree
      * @param InputData $input
-     * @param $regexItem
+     * @param array $regexItems
      * @return Result
      */
-    private function checkAll(array $tree, InputData $input, $regexItem)
+    private function checkAll(array $tree, InputData $input, array $regexItems)
     {
         $result = new Result();
 
-        $result->merge($this->checkCapabilities($tree, $input));
-        $result->merge($this->checkRegexes($tree, $regexItem));
+        $result->merge($this->checkCapabilities($tree));
+        $result->merge($this->checkRegexes($tree, $regexItems));
         $result->merge($this->checkOverwrites($tree, $input));
         $result->merge($this->checkExtends($tree, $input));
 
@@ -139,7 +151,7 @@ class Parser {
 
         if(isset($tree['capabilities']))
         {
-            $this->path[] = "Found capabilities " . json_encode($tree['capabilities']);
+            $this->path[] = ["Found capabilities: ", $tree['capabilities']];
 
             $result->addCapabilities($tree['capabilities']);
         }
@@ -158,13 +170,15 @@ class Parser {
 
         if(isset($tree['overwrites']))
         {
-            $this->path[] = "Found overwrites " . json_encode($tree['overwrites']);
-
             foreach($tree['overwrites'] as $overwrite)
             {
+                $this->path[] = ["Checking overwrite: ", $overwrite, "against input: " , $input];
+
                 $overwriter = new static($overwrite);
 
                 $result->addOverwrites($overwriter->parse($input));
+
+                $this->path[] = $overwriter->path;
             }
         }
 
@@ -182,7 +196,7 @@ class Parser {
 
         if(isset($tree['extends']))
         {
-            $this->path[] = "Found extends " . json_encode($tree['extends']);
+            $this->path[] = ["Found extends: ", $tree['extends']];
 
             foreach($tree['extends'] as $extend)
             {
@@ -202,25 +216,25 @@ class Parser {
 
     /**
      * @param array $tree
-     * @param $searchString
+     * @param array $searchStrings
      * @return Result
      */
-    private function checkRegexes(array $tree, $searchString)
+    private function checkRegexes(array $tree, array $searchStrings)
     {
         $result = new Result();
 
         if(isset($tree['regexes']))
         {
-            $this->path[] = "Found regexes  " . json_encode($tree['regexes']);
+            $this->path[] = ["Found regexes: ", $tree['regexes']];
 
             foreach($tree['regexes'] as $regex)
             {
                 if(
-                    (isset($regex['regex']) && preg_match("@{$regex['regex']}@i", $searchString))
+                    (isset($regex['regex']) && $this->anyMatch($regex['regex'], $searchStrings))
                     ||
-                    (isset($regex['regex_not']) && !preg_match("@{$regex['regex_not']}@i", $searchString))
+                    (isset($regex['regex_not']) && $this->noneMatch($regex['regex_not'], $searchStrings))
                 ){
-                    $this->path[] = "Matched regex " . json_encode($regex);
+                    $this->path[] = ["Matched regex: ", $regex];
 
                     $result->addCapabilities($regex['capabilities']);
                     break;
@@ -229,5 +243,25 @@ class Parser {
         }
 
         return $result;
+    }
+
+    private function anyMatch($regex, array $strings)
+    {
+        foreach($strings as $string)
+        {
+            if(preg_match("@{$regex}@i", $string)) return true;
+        }
+
+        return false;
+    }
+
+    private function noneMatch($regex, array $strings)
+    {
+        foreach($strings as $string)
+        {
+            if(preg_match("@{$regex}@i", $string)) return false;
+        }
+
+        return true;
     }
 }
