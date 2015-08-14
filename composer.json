@@ -30,8 +30,5 @@
     "post-dumpautoload-cmd": [
       "bin/uacaps update"
     ]
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~4.4"
   }
 }

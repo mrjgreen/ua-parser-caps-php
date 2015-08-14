@@ -117,15 +117,18 @@ class TestCommand extends Command
                 $msg .= "Actual:\n";
                 $msg .= $this->format($capabilities);
                 $msg .= "\n===================================\n";
-                $msg .= "Path:\n";
-                $msg .= $this->format($this->parser->path);
-                $msg .= "\n===================================\n";
+                if($this->output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE)
+                {
+                    $msg .= "Path:\n";
+                    $msg .= $this->format($this->parser->path);
+                    $msg .= "\n===================================\n";
+                }
                 $this->output->write($msg);
 
                 if($stopOnFail) return false;
                 else $failed[] = $msg;
             }else{
-                $this->output->writeln("<info>✔ $i / $total {$test["string"]}</info>");
+                $this->output->write("$i / $total\r");
             }
         }
 
@@ -133,7 +136,7 @@ class TestCommand extends Command
 
         $passed = $i - $failCount;
 
-        foreach($failed as $msg) $this->output->writeln($msg);
+        //foreach($failed as $msg) $this->output->writeln($msg);
 
         $this->output->writeln("<info>✔ Passed: $passed / $i</info>");
         $this->output->writeln("<error>✘ Failed: $failCount / $i</error>");
