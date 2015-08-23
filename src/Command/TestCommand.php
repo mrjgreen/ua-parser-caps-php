@@ -54,7 +54,7 @@ class TestCommand extends Command
 
         if(!$test)
         {
-            $output->writeln('<error>No test files specified. Downloading tests from project. Specify a agent string as an argument or use --tests (-t) to specify test file locations</error>');
+            $output->writeln('<error>No test files specified. Downloading tests from project. Use --tests (-t) to specify test file locations</error>');
 
             if(!is_file($this->defaultLocalSource))
             {
@@ -63,6 +63,8 @@ class TestCommand extends Command
                 if($data = file_get_contents($this->defaultSource))
                 {
                     file_put_contents($this->defaultLocalSource, $data);
+                }else{
+                    throw new \Exception("Tests download failed: $this->defaultSource");
                 }
             }
 
