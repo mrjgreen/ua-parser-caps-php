@@ -21,5 +21,5 @@ Roadmap
 * [x] Symfony console commands
 * [x] Refactor into "YAML Translator" and "Parser"
 * [x] Add travis tests
-* [ ] All tests passing (5/~62000 failing)
+* [ ] All tests passing (1/~62000 failing)
 * [ ] Test interface with ua-parser PHP
