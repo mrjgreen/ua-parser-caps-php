@@ -36,9 +36,9 @@ class TestCommand extends Command
         $this
             ->setName('test')
             ->setDescription('Runs the tests against the parser.')
-            //->addArgument('uastring', InputArgument::OPTIONAL, 'A user agent string to test')
             ->addOption('source', 's', InputOption::VALUE_REQUIRED, 'The regex source data', $defaultRegexData)
             ->addOption('test', 't', InputOption::VALUE_REQUIRED, 'The test file')
+            ->addOption('update', 'u', InputOption::VALUE_NONE, 'Force a download of the test file even if its ')
         ;
     }
 
@@ -56,9 +56,9 @@ class TestCommand extends Command
         {
             $output->writeln('<error>No test files specified. Downloading tests from project. Use --tests (-t) to specify test file locations</error>');
 
-            if(!is_file($this->defaultLocalSource))
+            if($input->getOption('update') || !is_file($this->defaultLocalSource))
             {
-                $output->writeln('<info>Test file does not exist locally. Downloading....</info>');
+                $output->writeln('<info>Downloading project test file....</info>');
 
                 if($data = file_get_contents($this->defaultSource))
                 {
